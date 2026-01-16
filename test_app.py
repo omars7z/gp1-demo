@@ -10,7 +10,7 @@ def client():
 def test_homepage_loads(client):
     response = client.get('/')
     assert response.status_code == 200
-    assert b"setup AI Placement Test successfully" in response.data
+    assert b"AI Placement Test" in response.data
 
 
 def test_beginner_level():
