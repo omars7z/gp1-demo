@@ -124,8 +124,16 @@ HTML = """
 """
 
 
+def placement_test(score_percent):
+    if score_percent < 40:
+        return "Beginner"
+    elif score_percent < 70:
+        return "Intermediate"
+    else:
+        return "Advanced"
+
 @app.route("/", methods=["GET", "POST"])
-def placement_test():
+def index():
     result = None
 
     if request.method == "POST":
@@ -135,14 +143,13 @@ def placement_test():
 
         score_percent = int((score / 4) * 100)
 
-        if score_percent < 40:
-            level = "Beginner"
+        level = placement_test(score_percent)
+
+        if level == "Beginner":
             recommendation = "Python & Programming Basics"
-        elif score_percent < 70:
-            level = "Intermediate"
+        elif level == "Intermediate":
             recommendation = "Neural Networks Basics"
         else:
-            level = "Advanced"
             recommendation = "Deep Learning & Transformers"
 
         result = {
