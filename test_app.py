@@ -8,10 +8,9 @@ def client():
         yield client
 
 def test_homepage_loads(client):
-    """Test that the homepage returns a 200 status code"""
     response = client.get('/')
     assert response.status_code == 200
-    assert b"AI Placement Test" in response.data
+    assert b"setup AI Placement Test successfully" in response.data
 
 
 def test_beginner_level():
